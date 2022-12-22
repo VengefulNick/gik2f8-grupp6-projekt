@@ -1,0 +1,10 @@
+// CREATE - POST
+
+
+// READ - GET
+
+
+// UPDATE - PUT/PATCH
+
+
+// DELETE - DELETE
