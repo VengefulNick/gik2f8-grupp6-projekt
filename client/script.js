@@ -40,7 +40,6 @@ function saveUser(){
 
 // RenderFunc
 function renderUsers(){
-    console.log('renderUsers')
     api.getUsers().then((users) => {
         cardContainer.innerHTML = ' ';
 
@@ -53,11 +52,10 @@ function renderUsers(){
 }
 
 function renderUser({id, username, email, joinDate, theme, avatar}) {
-    console.log('renderUser!')
     let html = `
     <div
-    id="${id}" class="bg-blue-500 rounded-xl col-span-1 row-span-1 min-w-full flex-auto flex-col justify-center items-center">
-    <div id="cardTop" class="min-w-full rounded-t-xl min-h-[200px] bg-center bg-[url('../server/public/images/bg/bars/${theme}.png')] flex justify-center items-center">
+    id="${id}" class="bg-${theme}-500 rounded-xl col-span-1 row-span-1 min-w-full flex-auto flex-col justify-center items-center">
+    <div id="cardTop" class="min-w-full rounded-t-xl min-h-[200px] bg-center bg-[url('../server/public/images/bg/bars/${theme}bg.png')] flex justify-center items-center">
       <img class="max-w-[100px]" src="../server/public/images/avatars/${avatar}.svg" alt=""/>
     </div>
     <div id="cardBot" class="min-w-full min-h-[200px] flex flex-col justify-evenly items-center">
@@ -80,7 +78,6 @@ function renderUser({id, username, email, joinDate, theme, avatar}) {
 }
 
 // DeleteFunc
-
 function deleteUser(id){
     api.removeUser(id).then((result) =>{
         renderUsers();
@@ -88,12 +85,10 @@ function deleteUser(id){
 }
 
 // EditFunc
-
 function editUser(id){
     api.updateUser(id).then((result) =>{
         renderUsers();
     });
 }
-
 
 renderUsers()

@@ -1,1 +1,26 @@
-[{"id":100,"username":"Snopp","email":"snopp@snopp.se","joinDate":"","theme":"redbg","avatar":"butler"},{"id":101,"username":"BROOM","email":"plutt@snopp.se","joinDate":"","theme":"bluebg","avatar":"pilot"}]
+[
+  {
+    "id": 100,
+    "username": "Samiie",
+    "email": "h21samva@du.se",
+    "joinDate": "",
+    "theme": "red",
+    "avatar": "butler"
+  },
+  {
+    "id": 200,
+    "username": "Tranzzid",
+    "email": "h21vicbl@du.se",
+    "joinDate": "",
+    "theme": "purple",
+    "avatar": "pilot"
+  },
+  {
+    "id": 400,
+    "username": "VengefulNick",
+    "email": "h21nikmo@du.se",
+    "joinDate": "",
+    "theme": "green",
+    "avatar": "bodyguard"
+  }
+]

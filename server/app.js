@@ -43,7 +43,7 @@ app.post('/users', async (req, res) => {
 
 // READ - GET
 app.get('/users', async (req, res) => {
-    console.log('Read');
+    // console.log('Read');
     try {
         const users = await fs.readFile('./users.json');
         res.send(JSON.parse(users));
