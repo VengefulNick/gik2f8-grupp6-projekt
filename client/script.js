@@ -2,7 +2,9 @@
 
 addUserForm.addEventListener("submit", onSumbit);
 
+// Variables
 const cardContainer = document.getElementById('cardContainer');
+const formContainer = document.getElementById('formContainer');
 const api = new Api("http://localhost:5000/users");
 
 // InputValidation
@@ -46,8 +48,9 @@ function renderUsers(){
         if (users && users.length > 0) {
             users.forEach((user) => {
                 cardContainer.insertAdjacentHTML('beforeend', renderUser(user));
-            });
+            });  
         }
+        cardContainer.insertAdjacentHTML('beforeend', renderAddBtn());
     });
 }
 
@@ -59,7 +62,7 @@ function renderUser({id, username, email, joinDate, theme, avatar}) {
       <img class="max-w-[100px]" src="../server/public/images/avatars/${avatar}.svg" alt=""/>
     </div>
     <div id="cardBot" class="min-w-full min-h-[200px] flex flex-col justify-evenly items-center">
-      <h2 class="text-4xl text-white">${username}</h2>
+      <h2 class="text-4xl text-white my-3">${username}</h2>
       <a href="mailto:${email}" class="flex justify-center items-center text-2xl animate-bounce hover:animate-none hover:scale-125">
         <span class="text-5xl">📧</span>${email}</a>
       <p class="text-white">${joinDate}</p>
@@ -75,6 +78,26 @@ function renderUser({id, username, email, joinDate, theme, avatar}) {
   </div>`;
 
   return html;
+}
+
+function renderAddBtn() {
+  let html = `
+  <div class="flex justify-center items-center">
+    <button onclick="displayForm" type="button" value="addUser" 
+    class="flex justify-around items-center rounded-full min-w-[200px] min-h-[200px] bg-slate-200 text-slate-600 text-6xl before:content-['+'] hover:before:content-['Add']">
+    </button>
+  </div>
+  `;
+  return html;
+}
+
+// DisplayForm
+function displayForm() {
+
+}
+
+function hideForm() {
+  
 }
 
 // DeleteFunc

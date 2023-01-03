@@ -8,209 +8,92 @@
     <link rel="shortcut icon" href="#" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="h-screen bg-slate-900 bg-gradient-to-b from-slate-800 to-slate-700">
+  <body class="bg-slate-900 bg-gradient-to-b from-slate-800 to-slate-700">
     <header>
         <h1 class="mt-20 text-center text-7xl text-yellow-400 font-mono">
           USERS
         </h1>
       </header>
+
     <!-- KOMPONENTEN FÖR ATT SKAPA USER -->
-    <div
-      id="formContainer"
-      class="hidden absolute top-0 left-0 right-0 mx-[25%] my-[10%] z-10 rounded-xl bg-slate-900/60 backdrop-blur-sm border drop-shadow-md"
-    >
+    <div id="formContainer" class="absolute top-0 left-0 right-0 mx-[25%] my-[10%] z-10 rounded-xl bg-slate-900/60 backdrop-blur-sm border drop-shadow-md">
       <form id="addUserForm" class="flex flex-col m-10 p-10">
         <h1 class="text-center text-2xl text-white font-mono">Add User:</h1>
-        <label for="username" class="mt-5 text-xl text-slate-300"
-          >Username:</label
-        >
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Enter username"
-          required
-        />
+        <label for="username" class="mt-5 text-xl text-slate-300">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter username"/>
         <label for="mail" class="mt-5 text-xl text-slate-300">E-mail:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="adress@mail.com"
-        />
-        <label for="joindate" class="mt-5 text-xl text-slate-300"
-          >Join date:</label
-        >
+        <input type="email" id="email" name="email" placeholder="adress@mail.com"/>
+        <label for="joindate" class="mt-5 text-xl text-slate-300">Join date:</label>
         <input type="date" id="joinDate" name="joindate" />
-        <label for="theme" class="mt-5 text-xl text-slate-300"
-          >Color Theme:</label
-        >
+        <label for="theme" class="mt-5 text-xl text-slate-300">Color Theme:</label>
         <select name="theme" id="theme">
-          <option value="defaultbg">Default</option>
-          <option value="redbg">Red</option>
-          <option value="bluebg">Blue</option>
-          <option value="greenbg">Green</option>
-          <option value="yellowbg">Yellow</option>
-          <option value="purplebg">Purple</option>
+          <option value="default">Default</option>
+          <option value="red">Red</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+          <option value="yellow">Yellow</option>
+          <option value="purple">Purple</option>
         </select>
-        <!--
-        <label for="avatar" class="mt-5 text-xl text-slate-300"
-          >Select avatar:</label
-        >
-        <div
-          id="avatar"
-          class="flex justify-evenly align-center flex-wrap"
-          name="avatar"
-        >
+        <label for="avatar" class="mt-5 text-xl text-slate-300">Select avatar:</label>
+        <div id="avatar" class="flex flex-wrap justify-center align-center " name="avatar">
           <label for="avatar1" class="flex flex-col">
-            <img
-              src="../server/public/images/avatars/architect.svg"
-              alt=""
-              class="max-w-[100px]"
-            />
-            <input
-              type="radio"
-              id="avatar1"
-              value="avatar1"
-              name="avatar"
-              class="my-2"
-            />
+            <img src="../server/public/images/avatars/astronaut.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar1" value="astronaut" name="avatar" class="my-2"/>
           </label>
           <label for="avatar2" class="flex flex-col">
-            <img
-              src="../server/public/images/avatars/astronaut.svg"
-              alt=""
-              class="max-w-[100px]"
-            />
-            <input
-              type="radio"
-              id="avatar2"
-              value="avatar2"
-              name="avatar"
-              class="my-2"
-            />
+            <img src="../server/public/images/avatars/bodyguard.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar2" value="bodyguard" name="avatar" class="my-2"/>
           </label>
           <label for="avatar3" class="flex flex-col">
-            <img
-              src="../server/public/images/avatars/butler.svg"
-              alt=""
-              class="max-w-[100px]"
-            />
-            <input
-              type="radio"
-              id="avatar3"
-              value="butler"
-              name="avatar"
-              class="my-2"
-            />
+            <img src="../server/public/images/avatars/butler.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar3" value="butler" name="avatar" class="my-2"/>
           </label>
           <label for="avatar4" class="flex flex-col">
-            <img
-              src="../server/public/images/avatars/nurse.svg"
-              alt=""
-              class="max-w-[100px]"
-            />
-            <input
-              type="radio"
-              id="avatar4"
-              value="avatar4"
-              name="avatar"
-              class="my-2"
-            />
+            <img src="../server/public/images/avatars/captain.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar4" value="captain" name="avatar" class="my-2"/>
           </label>
           <label for="avatar5" class="flex flex-col">
-            <img
-              src="../server/public/images/avatars/waitress.svg"
-              alt=""
-              class="max-w-[100px]"
-            />
-            <input
-              type="radio"
-              id="avatar5"
-              value="avatar5"
-              name="avatar"
-              class="my-2"
-            />
+            <img src="../server/public/images/avatars/doctor.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar5" value="doctor" name="avatar" class="my-2"/>
           </label>
           <label for="avatar6" class="flex flex-col">
-            <img
-              src="../server/public/images/avatars/director.svg"
-              alt=""
-              class="max-w-[100px]"
-            />
-            <input
-              type="radio"
-              id="avatar6"
-              value="avatar6"
-              name="avatar"
-              class="my-2"
-            />
+            <img src="../server/public/images/avatars/guide.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar6" value="guide" name="avatar" class="my-2"/>
           </label>
           <label for="avatar7" class="flex flex-col">
-            <img
-              src="../server/public/images/avatars/bodyguard.svg"
-              alt=""
-              class="max-w-[100px]"
-            />
-            <input
-              type="radio"
-              id="avatar7"
-              value="avatar7"
-              name="avatar"
-              class="my-2"
-            />
+            <img src="../server/public/images/avatars/hairstylist.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar7" value="hairstylist" name="avatar" class="my-2"/>
           </label>
           <label for="avatar8" class="flex flex-col">
-            <img
-              src="../server/public/images/avatars/maid.svg"
-              alt=""
-              class="max-w-[100px]"
-            />
-            <input
-              type="radio"
-              id="avatar8"
-              value="avatar8"
-              name="avatar"
-              class="my-2"
-            />
+            <img src="../server/public/images/avatars/judge.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar8" value="judge" name="avatar" class="my-2"/>
           </label>
           <label for="avatar9" class="flex flex-col">
-            <img
-              src="../server/public/images/avatars/pilot.svg"
-              alt=""
-              class="max-w-[100px]"
-            />
-            <input
-              type="radio"
-              id="avatar9"
-              value="avatar9"
-              name="avatar"
-              class="my-2"
-            />
+            <img src="../server/public/images/avatars/maid.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar9" value="maid" name="avatar" class="my-2"/>
           </label>
           <label for="avatar10" class="flex flex-col">
-            <img
-              src="../server/public/images/avatars/student.svg"
-              alt=""
-              class="max-w-[100px]"
-            />
-            <input
-              type="radio"
-              id="avatar10"
-              value="avatar10"
-              name="avatar"
-              class="my-2"
-            />
+            <img src="../server/public/images/avatars/manager.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar10" value="manager" name="avatar" class="my-2"/>
+          </label>
+          <label for="avatar11" class="flex flex-col">
+            <img src="../server/public/images/avatars/receptionist.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar11" value="receptionist" name="avatar" class="my-2"/>
+          </label>
+          <label for="avatar12" class="flex flex-col">
+            <img src="../server/public/images/avatars/secretary.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar12" value="secretary" name="avatar" class="my-2"/>
+          </label>
+          <label for="avatar13" class="flex flex-col">
+            <img src="../server/public/images/avatars/waiter.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar13" value="waiter" name="avatar" class="my-2"/>
+          </label>
+          <label for="avatar14" class="flex flex-col">
+            <img src="../server/public/images/avatars/waitress.svg" alt="" class="max-w-[100px] mx-2"/>
+            <input type="radio" id="avatar14" value="waitress" name="avatar" class="my-2"/>
           </label>
         </div>
-        -->
-        <button
-          type="submit"
-          value="submit"
-          class="rounded-md bg-gradient-to-r from-cyan-500 to-emerald-600 text-white my-5 py-3 hover:scale-125"
-        >
-          SUBMIT
-        </button>
+        <button type="submit" value="submit" class="rounded-md bg-gradient-to-r from-cyan-500 to-emerald-600 text-white my-5 py-3 hover:scale-125">SUBMIT</button>
       </form>
     </div>
 
@@ -222,7 +105,4 @@
     <script src="./api.js"></script>
     <script src="./script.js"></script>
   </body>
-  <footer>
-    <h1 class="text-white text-4xl text-center">GIK2F8 - Grupp6 - Projekt</h1>
-  </footer>
 </html>
