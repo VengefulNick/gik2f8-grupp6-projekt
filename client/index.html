@@ -9,14 +9,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-slate-900 bg-gradient-to-b from-slate-800 to-slate-700">
-    <header>
-        <h1 class="mt-20 text-center text-7xl text-yellow-400 font-mono">
-          USERS
-        </h1>
-      </header>
-
     <!-- KOMPONENTEN FÖR ATT SKAPA USER -->
-    <div id="formContainer" class="absolute top-0 left-0 right-0 mx-[25%] my-[10%] z-10 rounded-xl bg-slate-900/60 backdrop-blur-sm border drop-shadow-md">
+    <div id="formContainer" class="hidden absolute top-0 left-0 right-0 mx-[25%] my-[5%] z-10 rounded-xl bg-slate-900/60 backdrop-blur-sm border drop-shadow-md">
+      <button onclick="hideForm()" class="absolute top-5 right-5 p-3 bg-white/10 rounded-full text-white">Close</button>
       <form id="addUserForm" class="flex flex-col m-10 p-10">
         <h1 class="text-center text-2xl text-white font-mono">Add User:</h1>
         <label for="username" class="mt-5 text-xl text-slate-300">Username:</label>
@@ -96,6 +91,12 @@
         <button type="submit" value="submit" class="rounded-md bg-gradient-to-r from-cyan-500 to-emerald-600 text-white my-5 py-3 hover:scale-125">SUBMIT</button>
       </form>
     </div>
+
+    <header>
+      <h1 class="mt-20 text-center text-7xl text-yellow-400 font-mono">
+        USERS
+      </h1>
+    </header>
 
     <main id="root" class="">
       <section id="cardContainer" class="m-20 grid gap-5 grid-flow-rows grid-cols-1 md:grid-cols-2 xl:grid-cols-3">

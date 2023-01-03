@@ -83,7 +83,7 @@ function renderUser({id, username, email, joinDate, theme, avatar}) {
 function renderAddBtn() {
   let html = `
   <div class="flex justify-center items-center">
-    <button onclick="displayForm" type="button" value="addUser" 
+    <button onclick="displayForm()" type="button" value="addUser" 
     class="flex justify-around items-center rounded-full min-w-[200px] min-h-[200px] bg-slate-200 text-slate-600 text-6xl before:content-['+'] hover:before:content-['Add']">
     </button>
   </div>
@@ -93,11 +93,11 @@ function renderAddBtn() {
 
 // DisplayForm
 function displayForm() {
-
+  formContainer.classList.remove('hidden');
 }
 
 function hideForm() {
-  
+  formContainer.classList.add('hidden');
 }
 
 // DeleteFunc
