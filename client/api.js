@@ -5,10 +5,9 @@ class Api {
         this.url = url;
     }
 
-    // Create/Post a user
-
-    createUser(/*insert*/) {
-        const JSONdata = JSON.stringify(/*insert*/);
+// Create/Post a user
+    createUser(data) {
+        const JSONdata = JSON.stringify(data);
 
         const request = new Request(this.url, {
             method: 'POST',
@@ -22,44 +21,31 @@ class Api {
             .catch((err) => console.log(err));
         }
 
-
-
 // Get users
     getUsers() {
-        const request = new Request(`${this.url}/insert-here/${insert-user}`, {
-            method: "GET", 
-        });
-        return fetch(request)
+        return fetch(this.url)
             .then((result) => result.json())
             .then((data) => data)
             .catch((err) => console.log(err));
     }
 
 // UPDATE - PUT/PATCH
-
-    updateUser(/*insert*/) {
-        const JSONData = JSON.stringify({
-            id: userId,
-            name: userName,
-        });
-
-        return fetch(`${this.url}/${insert-here}`, {
-        method: 'PUT'
+    updateUser(id) {
+        return fetch(`${this.url}/${id}`, {
+            method: 'PUT'
         })
         .then((result) => result)
         .catch((err) => console.log(err));
     }
 
 // DELETE - DELETE
+    removeUser(id) {
+        console.log(`Removing user with id ${id}`);
 
-    removeUser(/*insert-id*/) {
-        console.log(`Removing task with id ${id}`);
-
-        return fetch(`${this.url}/${insert-id}`, {
+        return fetch(`${this.url}/${id}`, {
             method: 'DELETE',
         })
             .then((result) => result)
             .catch((err) => console.log(err));
     }
-
 }

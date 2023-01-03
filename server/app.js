@@ -17,6 +17,7 @@ app
 
 // CREATE - POST
 app.post('/users', async (req, res) => {
+    console.log('Post');
     try {
         const user = req.body;
         const listBuffer = await fs.readFile('./users.json');
@@ -42,6 +43,7 @@ app.post('/users', async (req, res) => {
 
 // READ - GET
 app.get('/users', async (req, res) => {
+    console.log('Read');
     try {
         const users = await fs.readFile('./users.json');
         res.send(JSON.parse(users));
@@ -54,7 +56,7 @@ app.get('/users', async (req, res) => {
 app.put('/users/:id', async (req, res) => {
     console.log(req)
     try {
-        const id = req.params.id;
+        // const id = req.params.id;
         const jsonUserList =  await fs.readFile("./users.json");
         const currentUsers = JSON.parse(jsonUserList);
         /*
