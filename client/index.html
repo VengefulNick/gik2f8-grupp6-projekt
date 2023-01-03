@@ -1,20 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grupp6-Projekt</title>
     <link rel="shortcut icon" href="#" />
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-    <header></header>
+  </head>
+  <body class="bg-gradient-to-t from-slate-600 to-slate-800">
+    <header>
+      <h1 class="mt-20 text-center text-7xl text-yellow-400 font-mono">USERS</h1>
+    </header>
+
+    <!-- KOMPONENTEN FÖR ATT SKAPA/ÄNDRA USER -->
+      <div id="formContainer" class="hidden absolute top-0 left-0 right-0 mx-[25%] my-[10%] z-10 rounded-xl bg-slate-900/60 backdrop-blur-sm border drop-shadow-md">
+        <form class="flex flex-col m-10 p-10">
+          <h1 class="text-center text-2xl text-white font-mono">Add User:</h1>
+          <label for="username" class="mt-5 text-xl text-slate-300">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter username"/>
+          <label for="mail" class="mt-5 text-xl text-slate-300">E-mail:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="adress@mail.com"/>
+          <label for="joindate" class="mt-5 text-xl text-slate-300">Join date:</label>
+          <input type="date" id="joinDate" name="joindate"/>
+          <label for="theme" class="mt-5 text-xl text-slate-300">Color Theme:</label>
+          <select name="theme" id="theme">
+            <option value="defaultbg">Default</option>
+            <option value="redbg">Red</option>
+            <option value="bluebg">Blue</option>
+            <option value="greenbg">Green</option>
+            <option value="yellowbg">Yellow</option>
+            <option value="purplebg">Purple</option>
+          </select>
+          <label for="avatar" class="mt-5 text-xl text-slate-300">Select avatar:</label>
+          <div class="flex justify-evenly align-center flex-wrap" name="avatar">
+            <label for="avatar1" class="flex flex-col">
+                <img src="../server/public/images/avatars/architect.svg" alt="" class="max-w-[100px]">
+                <input type="radio" id="avatar1" value="avatar1" name="avatar" class="my-2"/>
+            </label>
+            <label for="avatar2" class="flex flex-col">
+                <img src="../server/public/images/avatars/astronaut.svg" alt="" class="max-w-[100px]">
+                <input type="radio" id="avatar2" value="avatar2" name="avatar" class="my-2"/>
+            </label>
+            <label for="avatar3" class="flex flex-col">
+                <img src="../server/public/images/avatars/butler.svg" alt="" class="max-w-[100px]">
+                <input type="radio" id="avatar3" value="avatar3" name="avatar" class="my-2"/>
+            </label>
+            <label for="avatar4" class="flex flex-col">
+                <img src="../server/public/images/avatars/nurse.svg" alt="" class="max-w-[100px]">
+                <input type="radio" id="avatar4" value="avatar4" name="avatar" class="my-2"/>
+            </label>
+            <label for="avatar5" class="flex flex-col">
+                <img src="../server/public/images/avatars/waitress.svg" alt="" class="max-w-[100px]">
+                <input type="radio" id="avatar5" value="avatar5" name="avatar" class="my-2"/>
+            </label>
+            <label for="avatar6" class="flex flex-col">
+                <img src="../server/public/images/avatars/director.svg" alt="" class="max-w-[100px]">
+                <input type="radio" id="avatar6" value="avatar6" name="avatar" class="my-2"/>
+            </label>
+            <label for="avatar7" class="flex flex-col">
+                <img src="../server/public/images/avatars/bodyguard.svg" alt="" class="max-w-[100px]">
+                <input type="radio" id="avatar7" value="avatar7" name="avatar" class="my-2"/>
+            </label>
+            <label for="avatar8" class="flex flex-col">
+                <img src="../server/public/images/avatars/maid.svg" alt="" class="max-w-[100px]">
+                <input type="radio" id="avatar8" value="avatar8" name="avatar" class="my-2"/>
+            </label>
+            <label for="avatar9" class="flex flex-col">
+                <img src="../server/public/images/avatars/pilot.svg" alt="" class="max-w-[100px]">
+                <input type="radio" id="avatar9" value="avatar9" name="avatar" class="my-2"/>
+            </label>
+            <label for="avatar10" class="flex flex-col">
+                <img src="../server/public/images/avatars/student.svg" alt="" class="max-w-[100px]">
+                <input type="radio" id="avatar10" value="avatar10" name="avatar" class="my-2"/>
+            </label>
+          </div>
+          <button
+            type="submit"
+            value="submit"
+            class="rounded-md bg-gradient-to-r from-cyan-500 to-emerald-600 text-white my-5 py-3 hover:scale-125">
+            SUBMIT
+          </button>
+        </form>
+      </div>
+
     <main id="root">
-        <div></div>
+      <section
+        id="cardContainer"
+        class="m-20 grid gap-5 grid-flow-rows grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+        
+        <!-- KOMPONENT FÖR USERCARD -->
+        <div
+          id="cardid"
+          class="bg-blue-500 rounded-xl col-span-1 row-span-1 min-w-full flex-auto flex-col justify-center items-center">
+          <div
+            id="cardTop"
+            class="min-w-full rounded-t-xl min-h-[200px] bg-center bg-[url('../server/public/images/bg/bars/bluebg.png')] flex justify-center items-center">
+            <img
+              class="max-w-[100px]"
+              src="../server/public/images/avatars/astronaut.svg"
+              alt=""/>
+          </div>
+          <div
+            id="cardBot"
+            class="min-w-full min-h-[200px] flex flex-col justify-evenly items-center">
+            <h2 class="text-4xl text-white">${username}</h2>
+            <a
+              href="mailto:#"
+              class="flex justify-center items-center text-2xl animate-bounce hover:animate-none hover:scale-125">
+              <span class="text-5xl">📧</span>${email}</a>
+            <p class="text-white">${joinDate}</p>
+            <div class="flex justify mt-3">
+              <button
+                onclick="editUser(${id})"
+                class="rounded-md bg-gradient-to-r from-cyan-500 to-emerald-600 text-white px-10 py-3 mx-4 hover:scale-125">
+                Edit
+              </button>
+              <button
+                onclick="deleteUser(${id})"
+                class="rounded-md bg-gradient-to-r from-red-600 to-orange-600 text-white px-8 py-3 mx-4 hover:scale-125">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- SLUTET PÅ CARD-->
+        <div class="m-auto">
+            <button class="p-10 rounded-full bg-blue-500 text-center" text="+"></button>
+        </div>
+      </section>
     </main>
-    <footer></footer>
-<script src="./api.js"></script>
-<script src="./script.js"></script>
-</body>
+
+    <script src="./api.js"></script>
+    <script src="./script.js"></script>
+  </body>
 </html>
