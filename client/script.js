@@ -24,7 +24,7 @@ function saveUser(){
         avatar: addUserForm.avatar.value
     };
     api.createUser(user)
-    console.log('createUser')
+    // console.log('createUser')
     .then((user) => {
         if (user) {
             renderUsers();
@@ -46,7 +46,7 @@ function renderUsers(){
 
         if (users && users.length > 0) {
             users.forEach((user) => {
-                cardContainer.insertAdjacentHTML('beforeend', renderUsers(user));
+                cardContainer.insertAdjacentHTML('beforeend', renderUser(user));
             });
         }
     });
@@ -81,4 +81,19 @@ function renderUser({id, username, email, joinDate, theme, avatar}) {
 
 // DeleteFunc
 
+function deleteUser(id){
+    api.removeUser(id).then((result) =>{
+        renderUsers();
+    });
+}
+
 // EditFunc
+
+function editUser(id){
+    api.updateUser(id).then((result) =>{
+        renderUsers();
+    });
+}
+
+
+renderUsers()

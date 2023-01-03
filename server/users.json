@@ -1,18 +1,1 @@
-[
-  {
-    "id" : 100,
-    "username": "Snopp",
-    "email": "snopp@snopp.se",
-    "joinDate": "",
-    "theme": "redbg",
-    "avatar": "butler"
-  },
-  {
-    "id" : 101,
-    "username": "BROOM",
-    "email": "plutt@snopp.se",
-    "joinDate": "",
-    "theme": "bluebg",
-    "avatar": "pilot"
-  }
-]
+[{"id":100,"username":"Snopp","email":"snopp@snopp.se","joinDate":"","theme":"redbg","avatar":"butler"},{"id":101,"username":"BROOM","email":"plutt@snopp.se","joinDate":"","theme":"bluebg","avatar":"pilot"}]
