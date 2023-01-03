@@ -16,52 +16,49 @@ app
 
 
 // CREATE - POST
-
-app.post('/tasks', async (req, res) => {
+app.post('/users', async (req, res) => {
     try {
-        const task = req.body;
-        const listBuffer = await fs.readFile('./tasks.json');
-        const currentTasks = JSON.parse(listBuffer);
-        let maxTaskId = 1;
-        if (currentTasks && currentTasks.length > 0) {
-        maxTaskId = currentTasks.reduce(
+        const user = req.body;
+        const listBuffer = await fs.readFile('./users.json');
+        const currentUsers = JSON.parse(listBuffer);
+        let maxUserId = 1;
+        if (currentUsers && currentUsers.length > 0) {
+        maxUserId = currentUsers.reduce(
             (maxId, currentElement) =>
             currentElement.id > maxId ? currentElement.id : maxId,
-            maxTaskId
+            maxUserId
         );
         }
 
-    const newTask = { id: maxTaskId + 1, ...task };
-    const newList = currentTasks ? [...currentTasks, newTask] : [newTask];
+    const newUser = { id: maxUserId + 1, ...user };
+    const newList = currentUsers ? [...currentUsers, newUser] : [newUser];
 
-    await fs.writeFile('./tasks.json', JSON.stringify(newList));
-    res.send(newTask);
+    await fs.writeFile('./users.json', JSON.stringify(newList));
+    res.send(newUser);
     } catch (error) {
     res.status(500).send({ error: error.stack });
     }
 });
 
 // READ - GET
-
-app.get('/tasks', async (req, res) => {
+app.get('/users', async (req, res) => {
     try {
-        const tasks = await fs.readFile('./tasks.json');
-        res.send(JSON.parse(tasks));
+        const users = await fs.readFile('./users.json');
+        res.send(JSON.parse(users));
     } catch (error) {
         res.status(500).send({ error });
     }
 });
 
 // UPDATE - PUT/PATCH
-
-app.put('/tasks/:id', async (req, res) => {
+app.put('/users/:id', async (req, res) => {
     console.log(req)
     try {
         const id = req.params.id;
-        const jsonTaskList =  await fs.readFile("./tasks.json");
-        const currentTasks = JSON.parse(jsonTaskList);
-
-        currentTasks.forEach(element => {
+        const jsonUserList =  await fs.readFile("./users.json");
+        const currentUsers = JSON.parse(jsonUserList);
+        /*
+        currentUsers.forEach(element => {
         if (element.id == id && element.completed == true) {
             element.completed = false;
         }
@@ -70,7 +67,8 @@ app.put('/tasks/:id', async (req, res) => {
             element.completed = true;
         }
         });
-        await fs.writeFile("./tasks.json", JSON.stringify(currentTasks));
+        */
+        await fs.writeFile("./users.json", JSON.stringify(currentUsers));
     }
     catch(err) {
         console.log(err)
@@ -78,27 +76,24 @@ app.put('/tasks/:id', async (req, res) => {
 })
 
 // DELETE - DELETE
-
-app.delete('/tasks/:id', async (req, res) => {
+app.delete('/users/:id', async (req, res) => {
     console.log(req);
     try {
         const id = req.params.id;
-        const listBuffer = await fs.readFile('./tasks.json');
-        const currentTasks = JSON.parse(listBuffer);
-        if (currentTasks.length > 0) {
+        const listBuffer = await fs.readFile('./users.json');
+        const currentUsers = JSON.parse(listBuffer);
+        if (currentUsers.length > 0) {
         await fs.writeFile(
-            './tasks.json',
-            JSON.stringify(currentTasks.filter((task) => task.id != id))
+            './users.json',
+            JSON.stringify(currentUsers.filter((user) => user.id != id))
         );
-        res.send({ message: `Uppgift med id ${id} togs bort` });
+        res.send({ message: `Användare med id ${id} togs bort` });
         } else {
-        res.status(404).send({ error: 'Ingen uppgift att ta bort' });
+        res.status(404).send({ error: 'Ingen användare att ta bort' });
         }
     } catch (error) {
         res.status(500).send({ error: error.stack });
     }
 });
-
-
 
 app.listen(PORT, () => console.log('Server running on http://localhost:5000'));
