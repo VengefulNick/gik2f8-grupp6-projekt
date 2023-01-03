@@ -17,11 +17,88 @@ app
 
 // CREATE - POST
 
+app.post('/tasks', async (req, res) => {
+    try {
+        const task = req.body;
+        const listBuffer = await fs.readFile('./tasks.json');
+        const currentTasks = JSON.parse(listBuffer);
+        let maxTaskId = 1;
+        if (currentTasks && currentTasks.length > 0) {
+        maxTaskId = currentTasks.reduce(
+            (maxId, currentElement) =>
+            currentElement.id > maxId ? currentElement.id : maxId,
+            maxTaskId
+        );
+        }
+
+    const newTask = { id: maxTaskId + 1, ...task };
+    const newList = currentTasks ? [...currentTasks, newTask] : [newTask];
+
+    await fs.writeFile('./tasks.json', JSON.stringify(newList));
+    res.send(newTask);
+    } catch (error) {
+    res.status(500).send({ error: error.stack });
+    }
+});
 
 // READ - GET
 
+app.get('/tasks', async (req, res) => {
+    try {
+        const tasks = await fs.readFile('./tasks.json');
+        res.send(JSON.parse(tasks));
+    } catch (error) {
+        res.status(500).send({ error });
+    }
+});
 
 // UPDATE - PUT/PATCH
 
+app.put('/tasks/:id', async (req, res) => {
+    console.log(req)
+    try {
+        const id = req.params.id;
+        const jsonTaskList =  await fs.readFile("./tasks.json");
+        const currentTasks = JSON.parse(jsonTaskList);
+
+        currentTasks.forEach(element => {
+        if (element.id == id && element.completed == true) {
+            element.completed = false;
+        }
+
+        else if (element.id == id && element.completed == false) {
+            element.completed = true;
+        }
+        });
+        await fs.writeFile("./tasks.json", JSON.stringify(currentTasks));
+    }
+    catch(err) {
+        console.log(err)
+    }
+})
 
 // DELETE - DELETE
+
+app.delete('/tasks/:id', async (req, res) => {
+    console.log(req);
+    try {
+        const id = req.params.id;
+        const listBuffer = await fs.readFile('./tasks.json');
+        const currentTasks = JSON.parse(listBuffer);
+        if (currentTasks.length > 0) {
+        await fs.writeFile(
+            './tasks.json',
+            JSON.stringify(currentTasks.filter((task) => task.id != id))
+        );
+        res.send({ message: `Uppgift med id ${id} togs bort` });
+        } else {
+        res.status(404).send({ error: 'Ingen uppgift att ta bort' });
+        }
+    } catch (error) {
+        res.status(500).send({ error: error.stack });
+    }
+});
+
+
+
+app.listen(PORT, () => console.log('Server running on http://localhost:5000'));
