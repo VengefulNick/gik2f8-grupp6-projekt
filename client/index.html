@@ -11,7 +11,7 @@
   <body class="bg-slate-900 bg-gradient-to-b from-slate-800 to-slate-700">
     <!-- KOMPONENTEN FÖR ATT SKAPA USER -->
     <div id="formContainer" class="hidden absolute top-0 left-0 right-0 mx-[25%] my-[5%] z-10 rounded-xl bg-slate-900/60 backdrop-blur-sm border drop-shadow-md">
-      <button onclick="hideForm()" class="absolute top-5 right-5 p-3 bg-white/10 rounded-full text-white">Close</button>
+      <button onclick="hideForm()" class="absolute top-5 right-5 p-3 bg-white/10 rounded-full text-white hover:bg-white/50">Close</button>
       <form id="addUserForm" class="flex flex-col m-10 p-10">
         <h1 class="text-center text-2xl text-white font-mono">Add User:</h1>
         <label for="username" class="mt-5 text-xl text-slate-300">Username:</label>
@@ -88,7 +88,10 @@
             <input type="radio" id="avatar14" value="waitress" name="avatar" class="my-2"/>
           </label>
         </div>
-        <button type="submit" value="submit" class="rounded-md bg-gradient-to-r from-cyan-500 to-emerald-600 text-white my-5 mx-10 py-3 hover:scale-125">SUBMIT</button>
+        <button type="submit" value="submit" 
+                class="rounded-md bg-gradient-to-r from-cyan-500 to-emerald-600 text-slate-200 my-5 mx-20 py-3 
+                hover:bg-gradient-to-r hover:from-cyan-200 hover:to-emerald-300">SUBMIT
+        </button>
       </form>
     </div>
 

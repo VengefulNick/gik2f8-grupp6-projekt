@@ -57,11 +57,11 @@ function renderUsers(){
 function renderUser({id, username, email, joinDate, theme, avatar}) {
     let html = `
     <div
-    id="${id}" class="bg-${theme}-500 rounded-xl col-span-1 row-span-1 min-w-full flex-auto flex-col justify-center items-center">
-    <div id="cardTop" class="min-w-full rounded-t-xl min-h-[200px] bg-center bg-[url('../server/public/images/bg/bars/${theme}bg.png')] flex justify-center items-center">
-      <img class="max-w-[100px]" src="../server/public/images/avatars/${avatar}.svg" alt=""/>
+    id="${id}" class="bg-${theme}-200 rounded-xl col-span-1 row-span-1 min-w-full flex-auto flex-col justify-center items-center">
+    <div class="flex justify-center items-center min-w-full rounded-t-xl min-h-[200px] bg-center bg-[url('../server/public/images/bg/bars/${theme}bg.png')]">
+      <img class="max-w-[150px]" src="../server/public/images/avatars/${avatar}.svg" alt=""/>
     </div>
-    <div id="cardBot" class="min-w-full min-h-[200px] flex flex-col justify-evenly items-center">
+    <div class="flex flex-col justify-evenly items-center min-w-full rounded-b-xl min-h-[300px] bg-center bg-[url('../server/public/images/bg/waves/${theme}bg.png')]">
       <h2 class="text-4xl text-white my-3">${username}</h2>
       <a href="mailto:${email}" class="flex justify-center items-center text-2xl animate-bounce hover:animate-none hover:scale-125">
         <span class="text-5xl">📧</span>${email}</a>
@@ -82,7 +82,7 @@ function renderUser({id, username, email, joinDate, theme, avatar}) {
 
 function renderAddBtn() {
   let html = `
-  <div class="flex justify-center items-center">
+  <div class="flex justify-center items-center min-h-[500px]">
     <button onclick="displayForm()" type="button" value="addUser" 
     class="flex justify-around items-center rounded-full min-w-[200px] min-h-[200px] bg-slate-200 text-slate-600 text-6xl before:content-['+'] hover:before:content-['Add']">
     </button>
