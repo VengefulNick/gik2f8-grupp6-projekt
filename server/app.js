@@ -72,20 +72,19 @@ app.get('/users/:id', async (req, res) => {
 // UPDATE - PUT/PATCH
 app.put('/users/:id', async (req, res) => {
     try {
-        const userId = req.params.id;
+        //console.log('TRYING TO PUT!')
+        const userId = req.body.id;
+        console.log(req.body.id);
         const jsonUserList =  await fs.readFile("./users.json");
         const currentUsers = JSON.parse(jsonUserList);
-        currentUsers.forEach(user => {
+        currentUsers.forEach((user) => {
             if (user.id == userId) {
                 console.log('FOUND ID!')
-                user.username = req.params.username;
-                user.email = req.params.email;
-                user.joinDate = req.params.joinDate;
-                user.theme = req.params.theme;
-                user.avatar = req.params.avatar;
-            }
-            else {
-                console.log('DID NOT FIND ID!')
+                user.username = req.body.username;
+                user.email = req.body.email;
+                user.joinDate = req.body.joinDate;
+                user.theme = req.body.theme;
+                user.avatar = req.body.avatar;
             }
         });
         await fs.writeFile("./users.json", JSON.stringify(currentUsers));

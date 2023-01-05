@@ -11,13 +11,17 @@ const api = new Api("http://localhost:5000/users");
 
 // SubmitFunc
 function onSubmit(e) {
-  if (e.id == -1) {
+  const userId = document.getElementById('userId')
+  console.log(userId.value)
+  if (userId.value.length == 0) {
+    console.log('new user')
     e.preventDefault();
     saveUser();
   }
   else {
+    console.log('existing user')
     e.preventDefault();
-    editUser(e.id);
+    editUser(userId);
   }
 }
 
@@ -38,12 +42,7 @@ function saveUser(){
             renderUsers();
         }
     });
-    // Clear fields after submit
-    addUserForm.username.value = '';
-    addUserForm.email.value = '';
-    addUserForm.joinDate.value = '';
-    addUserForm.theme.value = '';
-    addUserForm.avatar.value = '';
+    clearForm();
 }
 
 // RenderFunc
@@ -105,6 +104,15 @@ function displayForm() {
 function hideForm() {
   formContainer.classList.add('hidden');
 }
+// ClearForm Func
+function clearForm(){
+  addUserForm.userId.value = '';
+  addUserForm.username.value = '';
+  addUserForm.email.value = '';
+  addUserForm.joinDate.value = '';
+  addUserForm.theme.value = '';
+  addUserForm.avatar.value = '';
+}
 
 // DeleteFunc
 function deleteUser(id){
@@ -115,32 +123,31 @@ function deleteUser(id){
 
 // EditFunc
 function editForm(id) {
-  console.log(id)
   api.getUser(id).then((result) => {
-    console.log(result)
+    //console.log(result)
     displayForm()
-    addUserForm.username.value = result.username
-    addUserForm.email.value = result.email
-    addUserForm.joinDate.value = result.joinDate
-    addUserForm.theme.value = result.theme
-    addUserForm.avatar.value = result.avatar
+    addUserForm.userId.value = id;
+    addUserForm.username.value = result.username;
+    addUserForm.email.value = result.email;
+    addUserForm.joinDate.value = result.joinDate;
+    addUserForm.theme.value = result.theme;
+    addUserForm.avatar.value = result.avatar;
   });
 }
 
 function editUser(id){
-  console.log(id)
   const user = {
-    id : id,
+    id : addUserForm.userId.value,
     username: addUserForm.username.value,
     email: addUserForm.email.value,
     joinDate: addUserForm.joinDate.value,
     theme: addUserForm.theme.value,
     avatar: addUserForm.avatar.value
   };
-
-    api.updateUser(id, user).then((result) => {
-        renderUsers();
-    });
+  clearForm();
+  api.updateUser(id, user).then((result) => {
+    renderUsers();
+  });
 }
 
 renderUsers()
