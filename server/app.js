@@ -52,24 +52,42 @@ app.get('/users', async (req, res) => {
     }
 });
 
+app.get('/users/:id', async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const usersList = await fs.readFile('./users.json');
+        const users = JSON.parse(usersList)
+        users.forEach((user) => {
+            if (user.id == userId) {
+                res.send(user);
+                return
+            }
+        });
+    } catch (error) {
+        res.status(500).send({ error });
+    }
+});
+
+
 // UPDATE - PUT/PATCH
 app.put('/users/:id', async (req, res) => {
-    console.log(req)
     try {
-        // const id = req.params.id;
+        const userId = req.params.id;
         const jsonUserList =  await fs.readFile("./users.json");
         const currentUsers = JSON.parse(jsonUserList);
-        /*
-        currentUsers.forEach(element => {
-        if (element.id == id && element.completed == true) {
-            element.completed = false;
-        }
-
-        else if (element.id == id && element.completed == false) {
-            element.completed = true;
-        }
+        currentUsers.forEach(user => {
+            if (user.id == userId) {
+                console.log('FOUND ID!')
+                user.username = req.params.username;
+                user.email = req.params.email;
+                user.joinDate = req.params.joinDate;
+                user.theme = req.params.theme;
+                user.avatar = req.params.avatar;
+            }
+            else {
+                console.log('DID NOT FIND ID!')
+            }
         });
-        */
         await fs.writeFile("./users.json", JSON.stringify(currentUsers));
     }
     catch(err) {

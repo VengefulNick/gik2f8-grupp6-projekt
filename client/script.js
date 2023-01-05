@@ -1,6 +1,6 @@
 // EventListeners
 
-addUserForm.addEventListener("submit", onSumbit);
+addUserForm.addEventListener("submit", onSubmit);
 
 // Variables
 const cardContainer = document.getElementById('cardContainer');
@@ -10,14 +10,20 @@ const api = new Api("http://localhost:5000/users");
 // InputValidation
 
 // SubmitFunc
-function onSumbit(e) {
+function onSubmit(e) {
+  if (e.id == -1) {
     e.preventDefault();
     saveUser();
+  }
+  else {
+    e.preventDefault();
+    editUser(e.id);
+  }
 }
 
 // SaveFunc
 function saveUser(){
-    console.log('saveUser')
+    //console.log('saveUser')
     const user = {
         username: addUserForm.username.value,
         email: addUserForm.email.value,
@@ -48,7 +54,7 @@ function renderUsers(){
         if (users && users.length > 0) {
             users.forEach((user) => {
                 cardContainer.insertAdjacentHTML('beforeend', renderUser(user));
-            });  
+            });
         }
         cardContainer.insertAdjacentHTML('beforeend', renderAddBtn());
     });
@@ -67,7 +73,7 @@ function renderUser({id, username, email, joinDate, theme, avatar}) {
         <span class="text-5xl">📧</span>${email}</a>
       <p class="text-white">${joinDate}</p>
       <div class="flex justify mt-3">
-        <button onclick="editUser(${id})" class="rounded-md bg-gradient-to-r from-cyan-500 to-emerald-600 text-white px-10 py-3 mx-4 hover:scale-125">
+        <button onclick="editForm(${id})" class="rounded-md bg-gradient-to-r from-cyan-500 to-emerald-600 text-white px-10 py-3 mx-4 hover:scale-125">
           Edit
         </button>
         <button onclick="deleteUser(${id})" class="rounded-md bg-gradient-to-r from-red-600 to-orange-600 text-white px-8 py-3 mx-4 hover:scale-125">
@@ -75,11 +81,11 @@ function renderUser({id, username, email, joinDate, theme, avatar}) {
         </button>
       </div>
     </div>
-  </div>`;
-
+  </div>
+  `;
   return html;
 }
-
+// AddBtnRender Func
 function renderAddBtn() {
   let html = `
   <div class="flex justify-center items-center min-h-[500px]">
@@ -91,25 +97,48 @@ function renderAddBtn() {
   return html;
 }
 
-// DisplayForm
+// DisplayForm Func
 function displayForm() {
   formContainer.classList.remove('hidden');
 }
-
+// HideForm Func
 function hideForm() {
   formContainer.classList.add('hidden');
 }
 
 // DeleteFunc
 function deleteUser(id){
-    api.removeUser(id).then((result) =>{
+    api.removeUser(id).then((result) => {
         renderUsers();
     });
 }
 
 // EditFunc
+function editForm(id) {
+  console.log(id)
+  api.getUser(id).then((result) => {
+    console.log(result)
+    displayForm()
+    addUserForm.username.value = result.username
+    addUserForm.email.value = result.email
+    addUserForm.joinDate.value = result.joinDate
+    addUserForm.theme.value = result.theme
+    addUserForm.avatar.value = result.avatar
+  });
+}
+
 function editUser(id){
-    api.updateUser(id).then((result) =>{
+  console.log(id)
+  const user = {
+    id : id,
+    username: addUserForm.username.value,
+    email: addUserForm.email.value,
+    joinDate: addUserForm.joinDate.value,
+    theme: addUserForm.theme.value,
+    avatar: addUserForm.avatar.value
+  };
+
+    api.updateUser(id, user).then((result) => {
         renderUsers();
     });
 }

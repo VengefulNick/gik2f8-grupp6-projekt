@@ -21,21 +21,36 @@ class Api {
             .catch((err) => console.log(err));
         }
 
-// Get users
+// Get all users
     getUsers() {
         return fetch(this.url)
             .then((result) => result.json())
             .then((data) => data)
             .catch((err) => console.log(err));
     }
+// Get single user
+    getUser(id) {
+        //console.log(id);
+        return fetch(`${this.url}/${id}`)
+            .then((result) => result.json())
+            .then((data) => data)
+            .catch((err) => console.log(err));
+    }
 
 // UPDATE - PUT/PATCH
-    updateUser(id) {
-        return fetch(`${this.url}/${id}`, {
-            method: 'PUT'
-        })
-        .then((result) => result)
-        .catch((err) => console.log(err));
+    updateUser(id, user) {
+        const JSONdata = JSON.stringify(user);
+
+        const request = new Request(`${this.url}/${id}`, {
+            method: 'PUT',
+            body: JSONdata,
+            headers: {'content-type': 'application/json'}
+        });
+
+        return fetch(request)
+            .then((result) => result.json())
+            .then((data) => data)
+            .catch((err) => console.log(err));
     }
 
 // DELETE - DELETE
