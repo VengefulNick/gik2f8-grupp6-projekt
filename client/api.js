@@ -39,6 +39,7 @@ class Api {
 
 // UPDATE - PUT/PATCH
     updateUser(id, user) {
+        console.log(`Updating user with id ${id}`);
         const JSONdata = JSON.stringify({
             id : user.id,
             username : user.username,

@@ -14,12 +14,12 @@ function onSubmit(e) {
   const userId = document.getElementById('userId')
   console.log(userId.value)
   if (userId.value.length == 0) {
-    console.log('new user')
+    //console.log('new user')
     e.preventDefault();
     saveUser();
   }
   else {
-    console.log('existing user')
+    //console.log('existing user')
     e.preventDefault();
     editUser(userId);
   }

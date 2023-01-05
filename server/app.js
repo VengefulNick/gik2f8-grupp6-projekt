@@ -17,7 +17,7 @@ app
 
 // CREATE - POST
 app.post('/users', async (req, res) => {
-    console.log('Post');
+    //console.log('Post');
     try {
         const user = req.body;
         const listBuffer = await fs.readFile('./users.json');
@@ -74,12 +74,12 @@ app.put('/users/:id', async (req, res) => {
     try {
         //console.log('TRYING TO PUT!')
         const userId = req.body.id;
-        console.log(req.body.id);
+        //console.log(req.body.id);
         const jsonUserList =  await fs.readFile("./users.json");
         const currentUsers = JSON.parse(jsonUserList);
         currentUsers.forEach((user) => {
             if (user.id == userId) {
-                console.log('FOUND ID!')
+                //console.log('FOUND ID!')
                 user.username = req.body.username;
                 user.email = req.body.email;
                 user.joinDate = req.body.joinDate;
@@ -96,7 +96,7 @@ app.put('/users/:id', async (req, res) => {
 
 // DELETE - DELETE
 app.delete('/users/:id', async (req, res) => {
-    console.log(req);
+    //console.log(req);
     try {
         const id = req.params.id;
         const listBuffer = await fs.readFile('./users.json');
