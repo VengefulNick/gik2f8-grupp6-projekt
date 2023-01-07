@@ -1,5 +1,4 @@
 // EventListeners
-
 addUserForm.addEventListener("submit", onSubmit);
 
 // Variables
@@ -103,6 +102,7 @@ function displayForm() {
 // HideForm Func
 function hideForm() {
   formContainer.classList.add('hidden');
+  clearForm();
 }
 // ClearForm Func
 function clearForm(){
