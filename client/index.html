@@ -10,7 +10,7 @@
   </head>
   <body class="bg-slate-900 bg-gradient-to-b from-slate-800 to-slate-700 h-full w-full">
     <!-- FORM KOMPONENT -->
-    <div id="formContainer" class="hidden absolute top-0 left-0 right-0 mx-[25%] my-[5%] z-10 rounded-xl bg-slate-900/60 backdrop-blur-sm border drop-shadow-md">
+    <div id="formContainer" class="hidden absolute top-0 left-0 right-0 mx-[10%] my-[5%] lg:mx-[20%] my-[5%] z-10 rounded-xl bg-slate-900/60 backdrop-blur-sm border drop-shadow-md">
       <button onclick="hideForm()" class="absolute top-5 right-5 p-3 bg-white/10 rounded-full text-white hover:bg-white/50">Close</button>
       <form id="addUserForm" class="flex flex-col m-10 p-10">
         <input id="userId" type="hidden" value=""/>
@@ -20,9 +20,9 @@
         <label for="mail" class="mt-5 text-xl text-slate-300">E-mail:</label>
         <input type="email" id="email" name="email" class="rounded-sm p-2" placeholder="adress@mail.com" required/>
         <label for="joindate" class="mt-5 text-xl text-slate-300">Join date:</label>
-        <input type="date" id="joinDate" name="joindate" class="rounded-sm p-2" />
+        <input type="date" id="joinDate" name="joindate" class="rounded-sm p-2" required/>
         <label for="theme" class="mt-5 text-xl text-slate-300">Color Theme:</label>
-        <select name="theme" id="theme" class="p-2">
+        <select name="theme" id="theme" class="p-2" required>
           <option value="slate">Default</option>
           <option value="red">Red</option>
           <option value="blue">Blue</option>

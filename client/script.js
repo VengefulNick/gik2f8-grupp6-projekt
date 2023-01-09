@@ -110,7 +110,7 @@ function clearForm(){
   addUserForm.username.value = '';
   addUserForm.email.value = '';
   addUserForm.joinDate.value = '';
-  addUserForm.theme.value = '';
+  addUserForm.theme.value = 'default';
   addUserForm.avatar.value = '';
 }
 
